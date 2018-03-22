@@ -1,0 +1,37 @@
+<script type="text/javascript">
+function ConvertRomanToArabic(roman){
+       if(roman == null) //checkig input number
+       return -1;
+
+    var totalNumber = 0,
+        value = 0, // set the initial value
+        prev = 0;
+    for(var i=0;i<roman.length;i++){
+        var current = compare(roman.charAt(i));
+        if (current > prev) { // we need to subtract numbers, not add numbers
+            totalNumber -= 2 * value;
+        }
+        if (current !== prev) { // if we have different symbols
+            value = 0;
+        }
+        value += current;
+        totalNumber += current;
+        prev = current;
+    }
+    return totalNumber;
+}
+function compare(character) { //compare and replace values
+    switch(character){
+        case 'I': return 1;
+        case 'V': return 5;
+        case 'X': return 10;
+        case 'L': return 50;
+        case 'C': return 100;
+        case 'D': return 500;
+        case 'M': return 1000;
+        default: return -1;
+    }
+}
+var input = prompt("Input any number");
+alert(ConvertRomanToArabic(input));
+</script>
